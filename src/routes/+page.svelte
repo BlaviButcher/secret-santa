@@ -1,23 +1,23 @@
 <script lang="ts">
-	import { Button, Content, DataTable, Dropdown, TextInput } from 'carbon-components-svelte';
+	import { Button, Dropdown, TextInput } from 'carbon-components-svelte';
 	import Renew from 'carbon-icons-svelte/lib/Renew.svelte';
 
 	let name: string;
 
 	let participants: string[] = [];
 
-    // secret santa
+	// secret santa
 	let allocatedPartners: Map<string, string>;
 
-    // Has the secret santa map been generated?
+	// Has the secret santa map been generated?
 	let generated = false;
 
-    // Holds name of partner of the selected user in dropdown
+	// Holds name of partner of the selected user in dropdown
 	let selectedUsersPartner: string | undefined = '';
 
-    // Checks whether the dummy dropdown has been selected
+	// Checks whether the dummy dropdown has been selected
 	let dropDownInitialSelected = false;
-    /* Holds the index that was selected for the dummy drop. Becuase we've added an extra dummy variable,
+	/* Holds the index that was selected for the dummy drop. Becuase we've added an extra dummy variable,
      when we switch to a dropdown without it, we must make sure the selected index is set to the dummy index - 1 */
 	let dropDownInitialIndexChange = 0;
 
@@ -38,7 +38,7 @@
 		return array;
 	}
 
-    // itterates over array and checks if any values match that index of the other
+	// itterates over array and checks if any values match that index of the other
 	function matchingIndexes<T>(arr1: T[], arr2: T[]): boolean {
 		for (let i = 0; i < arr1.length; i++) {
 			if (arr1[i] == arr2[i]) return true;
@@ -46,7 +46,7 @@
 		return false;
 	}
 
-    // Builds a map given two arrays
+	// Builds a map given two arrays
 	function allocatePartners(secretSantas: string[], allocated: string[]): Map<string, string> {
 		let santas = new Map<string, string>();
 		for (let i = 0; i < secretSantas.length; i++) {
@@ -55,7 +55,7 @@
 		return santas;
 	}
 
-    // Generate map for secret santa given a list of participants
+	// Generate map for secret santa given a list of participants
 	function generate(participants: string[]) {
 		let pCopy = [...participants];
 		do {
@@ -104,7 +104,7 @@
 
 		{#if generated}
 			<h3>Select Your Name:</h3>
-            <!-- Two dropdowns are in place using a conditonal so we can have a default value that dissapears after the first selection -->
+			<!-- Two dropdowns are in place using a conditonal so we can have a default value that dissapears after the first selection -->
 			{#if dropDownInitialSelected}
 				<Dropdown
 					style={`min-width: 30%; margin-top: 1rem;`}
